@@ -1,8 +1,0 @@
-<u><p><h1>Welcome to the Arcade Zone!</h1></u></p>
-
-<%= form_tag(signin_path)  do %>
-<b><p>Please log in: <%= collection_select(:player, :name, Player.all, :id, :name, include_blank: true) %></b></p><br>
-<b>Password: <%= password_field_tag :password %></b>
-<p><%= submit_tag "Log In" %></p>
-<b><p>Or create a new profile: <%= link_to "Register", new_player_path %></b><br>
-<% end %>
