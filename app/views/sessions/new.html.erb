@@ -1,4 +1,4 @@
-<p><h1>Welcome to the Arcade Zone!</h1></p>
+<u><p><h1>Welcome to the Arcade Zone!</h1></u></p>
 
 <%= form_tag(signin_path)  do %>
 <b><p>Please log in: <%= collection_select(:player, :name, Player.all, :id, :name, include_blank: true) %></b></p><br>
