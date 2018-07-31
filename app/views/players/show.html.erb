@@ -6,4 +6,6 @@
 
 <p>Age: <%= @player.age %></p>
 
-<p><%= link_to "Click here to pick a game to play!", games_path %></p>
+<p><%= link_to "View game selection", games_path %></p>
+
+<p><%= link_to "Edit profile", edit_player_path(@player) %></p>

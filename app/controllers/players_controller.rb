@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :find_player
 
   def new
     @player = Player.new
@@ -12,6 +13,15 @@ class PlayersController < ApplicationController
 
   def show
     @player = find_player
+  end
+
+  def edit
+    @player = find_player
+  end
+
+  def update
+    @player.update(player_params)
+    redirect_to player_path(@player)
   end
 
   private
