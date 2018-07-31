@@ -1,8 +1,0 @@
-<%= form_tag(login_path)  do %>
-
-<p><u><h1>Please log in </p></u></h1>
-<b><p>Select account: <%= collection_select(:player, :name, Player.all, :id, :name, include_blank: true) %></b></p><br>
-<b>Password: <%= password_field_tag :password %></b><br>
-<p><br><%= submit_tag "Log In" %></p>
-<b><br><p>Or create a new profile: <%= link_to "Register", new_player_path %></b>
-<% end %>
