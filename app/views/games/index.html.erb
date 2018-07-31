@@ -1,10 +1,9 @@
 <h1>Select a game:</h1>
 
-
 <% @games.each do |game| %>
 <ul>
-  <br><li>Name: <%= link_to game.name, game_path(game) %><br><br>
+  <b><br><li>Name: <%= link_to game.name, game_path(game) %><br><br>
   Difficulty: <%= game.difficulty_level %><br><br>
-  Fun Rating: <%= game.fun_rating %></li><br>
+  Fun Rating: <%= game.fun_rating %></li><br></b>
 </ul>
 <% end %>
