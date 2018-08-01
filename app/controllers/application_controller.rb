@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   def require_login
-    redirect_to "/" unless session.include? :player_id
+    redirect_to root_path unless session.include? :player_id
   end
 
   def logged_in?
@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_player
-    @player = Player.find_by(id: session[:player_id])
+    @current_player ||= Player.find_by(id: session[:player_id])
   end
 end
