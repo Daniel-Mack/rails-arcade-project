@@ -1,7 +1,7 @@
 <h1>Game: <%= @game.name %></h1>
 
-<%= form_tag game_path(@game) do %>
-  <p><b>Select a Character: <%= collection_select(:character, :name, Character.all, :id, :name, include_blank: true) %></b></p>
+<h3>Select a character to start the game!</h3>
 
-  <%= submit_tag "Play!" %>
+<% @game.characters.each do |character| %>
+<p><%= link_to "#{character.name}", character_path(character) %></p>
 <% end %>

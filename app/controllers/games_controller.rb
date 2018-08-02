@@ -11,6 +11,6 @@ class GamesController < ApplicationController
 private
 
   def find_game
-    @game = Game.find_by(params[:id])
+    @game = Game.find_by_id(params[:id])
   end
 end

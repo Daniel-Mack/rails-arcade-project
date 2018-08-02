@@ -5,7 +5,7 @@
   <b><p><%= f.label :age %>:</b>
   <%= f.text_field :age %></p>
 
-  <p><b>Select skill level: <%= collection_select(:player, :skill_level, Player.all, :id, :skill_level, include_blank: true) %></b></p>
+  <p><b>Select skill level: <%= f.select :skill_level, [['high'], ['medium'], ['low']]  %></b></p>
 
   <p><%= f.submit %></p>
 <% end %>

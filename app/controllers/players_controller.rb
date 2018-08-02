@@ -8,15 +8,13 @@ class PlayersController < ApplicationController
   end
 
   def create
-    # binding.pry
-    # raise params.inspect
-    @player = Player.create(player_params)
-    # if player.save
+    @player = Player.new(player_params)
+    if @player.save
       session[:player_id] = @player.id
       redirect_to player_path(@player)
-    # else
-    #   redirect_to root_path
-    # end
+    else
+      redirect_to root_path
+    end
   end
 
   def show
@@ -39,6 +37,6 @@ class PlayersController < ApplicationController
   end
 
   def find_player
-    @player = Player.find_by(params[:id])
+    @player = Player.find_by_id(params[:id])
   end
 end
