@@ -3,5 +3,5 @@
 <h3>Select a character to start the game</h3>
 
 <% @game.characters.each do |character| %>
-  <p><%= link_to "#{character.name}", character_path(character.game) %></p>
+  <p><%= link_to "#{character.name}", character_path(character) %></p>
 <% end %><br>

@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-
+before_action :find_game
   def index
     @games = Game.all
   end
