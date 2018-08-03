@@ -1,9 +1,9 @@
 <h1>Which game would you like to play?</h1>
 
 <% @games.each do |game| %>
-<ul>
-  <b><br><li>Name: <%= link_to game.name, game_path(game) %><br><br>
-  Difficulty: <%= game.difficulty_level %><br><br>
-  Fun Rating: <%= game.fun_rating %></li><br></b>
-</ul>
+  <ul>
+    <b><br><li>Name: <%= link_to game.name, game_path(game) %><br><br>
+    Difficulty: <%= game.difficulty_level %><br><br>
+    Fun Rating: <%= game.fun_rating %></li><br></b>
+  </ul>
 <% end %>

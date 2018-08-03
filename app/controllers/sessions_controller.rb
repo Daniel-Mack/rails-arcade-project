@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:player_id] = player.id
       redirect_to player_path(player), notice: 'Thanks for logging in!'
     else
-      redirect_to new_player_path
+      redirect_to login_path
     end
   end
 

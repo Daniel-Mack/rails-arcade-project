@@ -13,4 +13,8 @@ private
   def find_game
     @game = Game.find_by_id(params[:id])
   end
+
+  def game_params
+    params.require(:game).permit(:name, :difficulty_level, :fun_rating)
+  end
 end

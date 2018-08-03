@@ -1,7 +1,7 @@
 <h1>Sign Up</h1>
 
 <%= form_for (@player) do |f| %>
-  <b><p><%= f.label :name %>:</b>
+  <b><p><%= f.label :name %></b>
   <%= f.text_field :name %></p>
 
   <b><p><%= f.label :password %>:</b>
@@ -10,6 +10,6 @@
   <b><p><%= f.label :age %>:</b>
   <%= f.text_field :age %></p>
 
-<p><b>Select skill level: <%= f.select :skill_level, [['high'], ['medium'], ['low']]  %></b></p>
+  <p><b>Select skill level: <%= f.select :skill_level, [['high'], ['medium'], ['low']]  %></b></p>
   <p><%= f.submit %></p>
 <% end %>
