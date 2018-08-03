@@ -1,5 +1,7 @@
 <h1>Which game would you like to play?</h1>
 
+<%= link_to "Create a new game", new_game_path %>
+
 <% @games.each do |game| %>
   <ul>
     <b><br><li>Name: <%= link_to game.name, game_path(game) %><br><br>
