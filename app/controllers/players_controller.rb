@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# :nodoc:
 class PlayersController < ApplicationController
-  before_action :find_player, only: [:show, :edit, :update]
+  before_action :find_player, only: %i[show edit update]
 
   def new
     @player = Player.new
@@ -15,11 +18,9 @@ class PlayersController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @player.update(player_params)

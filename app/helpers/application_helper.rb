@@ -1,5 +1,7 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+# :nodoc:
+module ApplicationHelper
   def logged_in?
     @player = current_player
   end
