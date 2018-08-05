@@ -1,5 +1,7 @@
-class ApplicationController < ActionController::Base
+# frozen_string_literal: true
 
+# :nodoc:
+class ApplicationController < ActionController::Base
   def logged_in?
     @player = current_player
   end

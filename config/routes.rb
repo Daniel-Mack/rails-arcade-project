@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :players
   resources :games do
-    resources :characters, only: [:create, :show, :new]
+    resources :characters, only: %i[create show new]
   end
   root 'static_pages#home'
   get '/games/:id', to: 'character#show', as: 'play'

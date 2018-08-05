@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
+# :nodoc:
 class Character < ApplicationRecord
   belongs_to :game
   belongs_to :player, optional: true
   validates :name, presence: true
-  validates_format_of :name, :with => /\A[a-zA-Z\d ]*\z/i
+  validates_format_of :name, with: /\A[a-zA-Z\d ]*\z/i
 
   def image_path
     asset_path(image_name, type: :image)
   end
 
-private
+  private
 
   delegate :asset_path, to: :action_controller_base_helpers
   delegate :find_asset, to: :rails_assets
@@ -33,7 +36,7 @@ private
     if image_for_name_exists?
       name
     else
-      "Complete"
+      'Complete'
     end
   end
 end

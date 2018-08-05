@@ -1,16 +1,18 @@
-class SessionsController < ApplicationController
+# frozen_string_literal: true
 
+# :nodoc:
+class SessionsController < ApplicationController
   def new
     @player = Player.new
   end
 
   def create
     player = Player.find_by(name: params[:player][:name])
-    if player && player.authenticate(params[:player][:password])
+    if player&.authenticate(params[:player][:password])
       session[:player_id] = player.id
-      redirect_to player_path(player), notice: 'Thanks for logging in!'
+      redirect_player
     else
-      flash[:alert] = "Incorrect password. Please try again."
+      flash[:alert] = 'Incorrect password. Please try again.'
       redirect_to login_path
     end
   end
@@ -18,5 +20,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:player_id] = nil
     redirect_to root_path
+  end
+
+  private
+
+  def redirect_player
+    redirect_to player_path(player), notice: 'Thanks for logging in!'
   end
 end

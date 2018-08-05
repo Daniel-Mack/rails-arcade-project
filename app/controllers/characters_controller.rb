@@ -1,5 +1,7 @@
-class CharactersController < ApplicationController
+# frozen_string_literal: true
 
+# :nodoc:
+class CharactersController < ApplicationController
   def new
     @character = Character.new(game_id: params[:game_id])
   end
@@ -10,7 +12,7 @@ class CharactersController < ApplicationController
       @character.save
       redirect_to game_character_path(@character, game_id: @character.game)
     else
-      flash[:alert] = "Character name must exist and cannot contain special characters."
+      flash[:alert] = 'name must exist and cannot contain special characters.'
       redirect_to new_game_character_path(@character, game_id: @character.game)
     end
   end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nodoc:
 class GamesController < ApplicationController
   before_action :find_game
 
@@ -15,23 +18,21 @@ class GamesController < ApplicationController
       @game.save
       redirect_to game_path(@game)
     else
-      flash[:alert] = "Game name must exist and cannot contain special characters."
+      flash[:alert] = 'name must exist and cannot contain special characters.'
       redirect_to new_game_path
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @game.update(game_params)
     redirect_to game_path(@game)
   end
 
-  def show
-  end
+  def show; end
 
-private
+  private
 
   def game_params
     params.require(:game).permit(:name, :difficulty_level, :fun_rating)

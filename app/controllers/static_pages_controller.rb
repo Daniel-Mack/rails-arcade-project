@@ -1,5 +1,6 @@
-class StaticPagesController < ApplicationController
+# frozen_string_literal: true
 
-  def home
-  end
+# :nodoc:
+class StaticPagesController < ApplicationController
+  def home; end
 end
