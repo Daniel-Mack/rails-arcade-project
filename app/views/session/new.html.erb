@@ -1,8 +1,0 @@
-<p><u><h1>Please log in </p></u></h1>
-
-<%= form_for (@player) do |f| %>
-  <b><p>Select account: <%= f.collection_select(:name, Player.all, :id, :name, include_blank: true) %></b></p><br>
-  <b>Password: <%= f.password_field :password %></b><br>
-  <p><br><%= f.submit "Log In" %></p>
-  <b><br><p>Or create a new profile: <%= link_to "Register", new_player_path %></b>
-<% end %>

@@ -1,0 +1,9 @@
+<h1>Create a Game</h1>
+
+<%= form_for(@game) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <p><b>Select Difficulty: <%= f.select :difficulty_level, [['hard'], ['medium'], ['easy']]  %></b></p>
+  <p><b>Select Fun Rating: <%= f.select :fun_rating, [['hard'], ['medium'], ['easy']]  %></b></p>
+  <%= f.submit %>
+<% end %>

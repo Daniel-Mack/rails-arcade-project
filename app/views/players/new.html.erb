@@ -1,16 +1,27 @@
-<h1>Sign Up</h1>
+<u><h1>Sign Up</h1></u>
+
+<% if @player.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@player.errors.count, "error") %>
+      prohibited this player from being created:
+    </h2>
+
+    <ul>
+    <% @player.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for (@player) do |f| %>
-  <b><p><%= f.label :name %>:</b>
+  <b><p><%= f.label :name %></b>
   <%= f.text_field :name %></p>
-
-  <b><p><%= f.label :password %>:</b>
+  <b><p><%= f.label :password %></b>
   <%= f.password_field :password %></p>
-
-  <b><p><%= f.label :age %>:</b>
+  <b><p><%= f.label :age %></b>
   <%= f.text_field :age %></p>
-
-  <p><b>Select skill level: <%= collection_select(:player, :skill_level, Player.all, :id, :skill_level, include_blank: true) %></b></p>
-
+  <p><b>Select skill level: <%= f.select :skill_level, [['high'], ['medium'], ['low']]  %></b></p>
   <p><%= f.submit %></p>
 <% end %>
