@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :find_game
 
   def index
     @games = Game.all
@@ -10,17 +11,33 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    @game.save
+    if @game.valid?
+      @game.save
+      redirect_to game_path(@game)
+    else
+      flash[:alert] = "Game name must exist and cannot contain special characters."
+      redirect_to new_game_path
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @game.update(game_params)
     redirect_to game_path(@game)
   end
 
   def show
-    @game = Game.find_by_id(params[:id])
   end
 
 private
 
   def game_params
     params.require(:game).permit(:name, :difficulty_level, :fun_rating)
+  end
+
+  def find_game
+    @game = Game.find_by(id: params[:id])
   end
 end

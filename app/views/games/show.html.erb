@@ -1,9 +1,10 @@
 <h1>Game: <%= @game.name %></h1>
 
+<%= link_to "Create a character", new_game_character_path(@character, game_id: @game) %><br><br>
+<%= link_to "Edit game", edit_game_path(@game) %>
+
 <h3>Select a character to start the game</h3>
 
 <% @game.characters.each do |character| %>
   <p><%= link_to character.name, game_character_path(character, game_id: @game) %></p>
 <% end %><br>
-
-<%= link_to "Create a character", new_game_character_path(@character, game_id: @game) %>

@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       session[:player_id] = player.id
       redirect_to player_path(player), notice: 'Thanks for logging in!'
     else
+      flash[:alert] = "Incorrect password. Please try again."
       redirect_to login_path
     end
   end

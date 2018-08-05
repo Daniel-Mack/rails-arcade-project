@@ -1,6 +1,8 @@
 class Character < ApplicationRecord
   belongs_to :game
   belongs_to :player, optional: true
+  validates :name, presence: true
+  validates_format_of :name, :with => /\A[a-zA-Z\d ]*\z/i
 
   def image_path
     asset_path(image_name, type: :image)

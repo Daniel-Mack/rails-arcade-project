@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
       session[:player_id] = @player.id
       redirect_to player_path(@player)
     else
-      redirect_to login_path
+      render :new
     end
   end
 

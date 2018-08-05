@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :players
-  resources :games, only: [:index, :show, :new, :create] do
+  resources :games do
     resources :characters, only: [:create, :show, :new]
   end
   root 'static_pages#home'
