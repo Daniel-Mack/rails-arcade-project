@@ -5,6 +5,11 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      h1 {
+        margin-top: 60px;
+      }
+    </style>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -12,12 +17,12 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
           <% if !logged_in? %>
-          <%= link_to "Log In", login_path, class: "navbar-brand" %>
-          <%= link_to "Sign Up", new_player_path, class: "navbar-brand" %>
+            <%= link_to "Log In", login_path, class: "navbar-brand" %>
+            <%= link_to "Sign Up", new_player_path, class: "navbar-brand" %>
           <% else %>
-          <%= link_to "View Profile", player_path(@player), class: "navbar-brand" %>
-          <%= link_to "Games", games_path, class: "navbar-brand" %>
-          <%= link_to "Log Out", logout_path, class: "navbar-brand", method: "delete" %>
+            <%= link_to "View Profile", player_path(@player), class: "navbar-brand" %>
+            <%= link_to "Games", games_path, class: "navbar-brand" %>
+            <%= link_to "Log Out", logout_path, class: "navbar-brand", method: "delete" %>
           <% end %>
           </div>
           <% flash.each do |key, value| %>
