@@ -2,8 +2,9 @@
 
 Rails.application.routes.draw do
   resources :players
+  resources :characters
   resources :games do
-    resources :characters, only: %i[create show new]
+    resources :characters, only: %i[index create show new]
   end
   root 'static_pages#home'
   get '/games/:id', to: 'character#show', as: 'play'

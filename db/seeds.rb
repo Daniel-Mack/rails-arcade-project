@@ -56,7 +56,7 @@ Game.create!(name: 'Metal Gear Liquid',
 Character.create!(name: 'BK', player_id: 1, game_id: 1)
 Character.create!(name: 'Biddy Kong', player_id: 2, game_id: 1)
 Character.create!(name: 'Meria', player_id: 3, game_id: 2)
-Character.create!(name: 'Luaga', player_id: 3, game_id: 2)
+Character.create!(name: 'Luaga', player_id: 1, game_id: 2)
 Character.create!(name: 'Senic', player_id: 1, game_id: 3)
 Character.create!(name: 'Shellman', player_id: 2, game_id: 3)
 Character.create!(name: 'Zolda', player_id: 3, game_id: 4)
