@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_player
+    player = Player.find_by(name: params[:player][:name])
     redirect_to player_path(player), notice: 'Thanks for logging in!'
   end
 end

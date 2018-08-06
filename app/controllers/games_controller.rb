@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   before_action :find_game
 
   def index
-    @games = Game.all
+    @games = current_player.games
   end
 
   def new

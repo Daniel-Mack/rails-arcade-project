@@ -1,0 +1,5 @@
+<u><h1><%= @player.name %>'s Characters</h1></u>
+
+<% @player.characters.each do |character| %>
+<p><i><%= character.name %></i></p>
+<% end %>

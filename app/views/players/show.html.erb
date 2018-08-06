@@ -7,3 +7,5 @@
 <p>Age: <%= @player.age %></p>
 
 <p><%= link_to "Edit your profile", edit_player_path(@player) %></p>
+
+<p><%= link_to "List of characters", characters_path(@player.characters) %></p>
