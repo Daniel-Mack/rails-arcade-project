@@ -16,9 +16,10 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     if @game.valid?
       @game.save
+      flash[:alert] = 'After creating a game, a character is required to play.'
       redirect_to game_path(@game)
     else
-      flash[:alert] = 'name must exist and cannot contain special characters.'
+      flash[:alert] = 'Name must exist and cannot contain special characters.'
       redirect_to new_game_path
     end
   end
