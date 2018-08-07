@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+**Welcome to the Arcade Zone application!**
 
-* System dependencies
 
-* Configuration
+In this app you can play games, build your own game and add characters!
 
-* Database creation
+After you've built a new game, you must create a character to start the game.
 
-* Database initialization
+You can view the gemfile to see which gems are required to run the app.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After the gems are added, run bundle install.
