@@ -1,11 +1,15 @@
-<u><h1>Profile</h1></u>
+<br><b><u><h1>Profile</h1></u></b>
 
 <p><h3>Name: <%= @player.name %></h3></p>
 
-<p>Skill Level: <%= @player.skill_level %></p>
+<p><b>Skill Level: <%= @player.skill_level %></b></p>
 
-<p>Age: <%= @player.age %></p>
+<p><b>Age: <%= @player.age %></b></p>
 
 <p><%= link_to "Edit your profile", edit_player_path(@player) %></p>
 
-<p><%= link_to "List of characters", characters_path(@player.characters) %></p>
+<br><b><u><h2>Character List</h2></b></u><br>
+
+<% @player.characters.each do |character| %>
+  <ul><b><%= character.name %></b></ul>
+<% end %>

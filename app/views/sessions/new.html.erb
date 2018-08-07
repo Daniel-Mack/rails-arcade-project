@@ -1,4 +1,4 @@
-<p><u><h1>Please log in </p></u></h1>
+<br><p><u><h1>Please log in </p></u></h1><br>
 
 <%= form_for(@player, url: login_path) do |f| %>
   <b><p>Select player: <%= f.collection_select(:name, Player.all, :name, :name, include_blank: true) %></b></p><br>
