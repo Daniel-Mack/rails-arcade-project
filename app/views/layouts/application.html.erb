@@ -25,9 +25,7 @@
             <%= link_to "Log Out", logout_path, class: "navbar-brand", method: "delete" %>
           <% end %>
           </div>
-          <% flash.each do |key, value| %>
-            <p><i><div class="alert alert-<%= key %>"><%= value %></p></i></div>
-            <% end %>
+
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
           </ul>
@@ -38,5 +36,8 @@
     <div class="container"  role="main">
       <%= yield %>
     </div>
+    <% flash.each do |key, value| %>
+      <p><i><div class="alert alert-<%= key %>"><%= value %></p></i></div>
+      <% end %>
   </body>
 </html>
