@@ -9,5 +9,5 @@ class Player < ApplicationRecord
   validates :age, numericality: { only_integer: true }
   has_secure_password
 
-  scope :not_me, -> (current_player) {where.not(name: current_player.name)}
+  scope :not_me, ->(current_player) { where.not(name: current_player.name) }
 end

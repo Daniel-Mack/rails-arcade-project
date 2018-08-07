@@ -2,7 +2,6 @@
 
 # :nodoc:
 class CharactersController < ApplicationController
-
   def index
     @player = current_player
     @characters = current_player.characters
