@@ -2,7 +2,6 @@
 
 # :nodoc:
 class CharactersController < ApplicationController
-
   def index
     @player = current_player
     @characters = current_player.characters
@@ -26,7 +25,6 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find_by_id(params[:id])
-    # raise @character.inspect
   end
 
   private

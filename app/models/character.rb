@@ -13,6 +13,7 @@ class Character < ApplicationRecord
 
   private
 
+  # helpers to assist in generating image for newly created players
   delegate :asset_path, to: :action_controller_base_helpers
   delegate :find_asset, to: :rails_assets
 

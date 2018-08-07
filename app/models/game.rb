@@ -7,5 +7,3 @@ class Game < ApplicationRecord
   validates :name, presence: true
   validates_format_of :name, with: /\A[a-zA-Z\d ]*\z/i
 end
-
-#scope for last played game
