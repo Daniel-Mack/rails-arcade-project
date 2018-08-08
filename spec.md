@@ -11,11 +11,11 @@ Specs:
 
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 
-- [x - used own authentiaction logic] Include signup (how e.g. Devise)
+- [x - used own authentication logic] Include signup (how e.g. Devise)
 
-- [x - used own authentiaction logic] Include login (how e.g. Devise)
+- [x - used own authentication logic] Include login (how e.g. Devise)
 
-- [x - used own authentiaction logic] Include logout (how e.g. Devise)
+- [x - used own authentication logic] Include logout (how e.g. Devise)
 
 - [Garett removed requirement] Include third party signup/login (how e.g. Devise/OmniAuth)
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
