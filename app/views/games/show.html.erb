@@ -1,15 +1,14 @@
 <u><h1><%= @game.name %></h1></u><br>
 
 <h4><%= link_to "Edit game", edit_game_path(@game) %></h4><br>
-<h4><%= link_to "Create a character", new_game_character_path(@character, game_id: @game) %><br></h4>
 
-
-<br><h3>Select your opponent:</h3>
+<h3>Select your opponent:</h3>
 <%= form_for (@game) do |f| %>
   <%= f.collection_select :player_ids, Player.not_me(current_player), :id, :name, :include_blank => "Computer" %>
 <% end %>
 
 <br><h3>Select a character to start the game:</h3>
+<h4><i><%= link_to "Create a character", new_game_character_path(@character, game_id: @game) %><br><br></i></h4>
 
 <% @game.characters.each do |character| %>
   <p><%= link_to character.name, game_character_path(character, game_id: @game) %></p>
