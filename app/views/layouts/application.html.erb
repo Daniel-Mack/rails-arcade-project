@@ -36,9 +36,11 @@
     <div class="container"  role="main">
       <%= yield %>
     </div>
+    <div class="flash">
     <% flash.each do |key, value| %>
       <p><i><div class="alert alert-<%= key %>"><%= value %></p></i></div>
       <% end %>
+    </div>
   </body>
   <div class="footer">
   <p> &copy; 2018, Power Development. All rights reserved </p>
