@@ -2,7 +2,8 @@
 
 # :nodoc:
 class GamesController < ApplicationController
-  before_action :find_game
+  protect_from_forgery
+  before_action :find_game, only: [:show, :edit, :update]
 
   def index
     @games = current_player.games
@@ -13,9 +14,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
-    if @game.valid?
-      @game.save
+    @game = Game.create(game_params)
+    if @game.save
       flash[:alert] = 'After creating a game, a character is required to play.'
       redirect_to game_path(@game)
     else
@@ -31,7 +31,15 @@ class GamesController < ApplicationController
     redirect_to game_path(@game)
   end
 
-  def show; end
+  def show
+    @character = Character.create(id: params[:id], name: params[:name], game_id: params[:game_id])
+    game_json = @game.to_json(only: [:name, :difficulty_level, :fun_rating, :id],
+                              include: [characters: { only: [:name, :game_id, :id]}])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: game_json }
+    end
+  end
 
   private
 

@@ -18,7 +18,14 @@ class PlayersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    player_json = @player.to_json(only: [:name, :skill_level, :age],
+                                          include: [characters: { only: [:name, :id]}])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: player_json }
+    end
+  end
 
   def edit; end
 

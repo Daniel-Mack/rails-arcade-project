@@ -10,6 +10,37 @@
 
 <br><b><u><h2>Character List</h2></b></u><br>
 
-<% @player.characters.each do |character| %>
+<!-- <% @player.characters.each do |character| %>
   <ul><b><%= character.name %></b></ul>
-<% end %>
+<% end %> -->
+
+<div class="characterList">
+</div>
+
+<button class="playerCharacters" data-id="<%= @player.id %>">List Characters</button>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".playerCharacters").on("click", function() {
+    let playerId = parseInt($(".playerCharacters").attr("data-id"))
+    $.get("/players/" + playerId + ".json", function(data) {
+       $(".characterList").html("")
+      data["characters"].forEach(function(data){
+        $(".characterList").append("<li>" + data.name + "</li>" + "<br>")
+      })
+    });
+  });
+})
+</script>
+
+<script>
+$('.playerCharacters').on("click", event => {
+  $(".characterList").toggle();
+})
+</script>
+
+<script>
+$('.playerCharacters').click(function() {
+  $(this).hide()
+})
+</script>
