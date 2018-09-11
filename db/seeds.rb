@@ -24,34 +24,34 @@ Player.create!(name: 'Xeneth',
                age: 34)
 
 Player.create!(name: 'Kerune',
-               password: 'random',
-               skill_level: 'low',
+               password: 'Random',
+               skill_level: 'Low',
                age: 21)
 
 Game.create!(name: 'Donkey Kung',
-             difficulty_level: 'easy',
-             fun_rating: 'high')
+             difficulty_level: 'Easy',
+             fun_rating: 'High')
 
 Game.create!(name:
             'Merio Sisters',
-             difficulty_level: 'medium',
-             fun_rating: 'average')
+             difficulty_level: 'Medium',
+             fun_rating: 'Average')
 
 Game.create!(name: 'Senic 2',
-             difficulty_level: 'hard',
-             fun_rating: 'low')
+             difficulty_level: 'Hard',
+             fun_rating: 'Low')
 
 Game.create!(name: 'Legend of Zolda',
-             difficulty_level: 'hard',
-             fun_rating: 'high')
+             difficulty_level: 'Hard',
+             fun_rating: 'High')
 
 Game.create!(name: 'Pokeman Yellow',
-             difficulty_level: 'medium',
-             fun_rating: 'low')
+             difficulty_level: 'Medium',
+             fun_rating: 'Low')
 
 Game.create!(name: 'Metal Gear Liquid',
-             difficulty_level: 'hard',
-             fun_rating: 'low')
+             difficulty_level: 'Hard',
+             fun_rating: 'Low')
 
 Character.create!(name: 'BK', player_id: 1, game_id: 1)
 Character.create!(name: 'Biddy Kong', player_id: 2, game_id: 1)
@@ -65,3 +65,4 @@ Character.create!(name: 'Ash Ketchup', player_id: 2, game_id: 5)
 Character.create!(name: 'Brook', player_id: 3, game_id: 5)
 Character.create!(name: 'Snack', player_id: 1, game_id: 6)
 Character.create!(name: 'Raided', player_id: 3, game_id: 6)
+Character.create!(name: 'Shadow', player_id: 1, game_id: 1)

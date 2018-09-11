@@ -11,7 +11,6 @@
   a:hover { color: #eaa; }
   th { text-align: left; }
 
-
   body {
         background-image: image-url('backround.jpg');
         -webkit-background-size: cover;
@@ -20,6 +19,24 @@
         background-size: cover;
         font-family: 'Open Sans', Arial, Helvetica, Sans-Serif;
   }
+
+  .characterList {
+
+  display:none;
+
+  }
+
+  .gameEdit {
+
+  display:none;
+
+  }
+
+  // .editForm {
+  //
+  // display:none;
+  //
+  // }
 
 
   .footer {
