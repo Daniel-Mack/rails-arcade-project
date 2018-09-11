@@ -2,7 +2,7 @@
 <b>Difficulty:</b> <p class="gameDifficultyLevel"><%= @game.difficulty_level %></p>
 <b>Fun Rating:</b> <p class="gameFunRating"><%= @game.fun_rating %></p>
 
-<br><h4><u><b><i>Edit Game</i></u></b></h4>
+<br><b><button class="gameEdit" data-id="<%= @game.id %>">Edit Game</b></button>
 <%= form_for @game do |f| %>
   <div class="editForm">
     <%= f.label :name %>:
@@ -50,5 +50,4 @@
   </div>
 <% end %>
 
-<br><br><br><br><b><button class="js-next" data-id="<%= @game.id %>">Next Game >></b></button>
-<br><button class="gameEdit" data-id="<%= @game.id %>">Edit Game</button>
+<br><br><br><b><button class="js-next" data-id="<%= @game.id %>">Next Game >></b></button>
