@@ -12,11 +12,11 @@ After you've built a new game, you must create a character to start the game.
 You can view the gemfile to see which gems are required to run the app.
 
 After the gems are added, run bundle install.
-<!--
 
-<u><h1 class="gameName"><%= @game.name %></h1><br></u>
+
+<!-- <u><h1 class="gameName"><%= @game.name %></h1><br></u>
 <b>Difficulty:</b> <p class="gameDifficultyLevel"><%= @game.difficulty_level %></p>
-<b>Fun Rating:</b> <p class="gameFunRating"><%= @game.fun_rating %></p>
+<b>Fun Rating:</b> <p class="gameFunRating"><%= @game.fun_rating %></p> -->
 
 <!-- Edits the game -->
 <!-- <br><button class="gameEdit" data-id="<%= @game.id %>">Edit Game</button>
@@ -25,44 +25,35 @@ After the gems are added, run bundle install.
   <div class="editForm">
     <%= f.label :name %>:
     <%= f.text_field :name %>
-  </div>
-  <div class="editForm">
     <p><b>Select Difficulty: <%= f.select :difficulty_level, [['Hard'], ['Medium'], ['Easy']]  %></b></p>
-  </div>
-  <div class="editForm">
     <p><b>Select Fun Rating: <%= f.select :fun_rating, [['High'], ['Average'], ['Low']]  %></b></p>
-  </div>
-  <div class="editActions">
     <b><%= f.submit %></b>
   </div>
-<% end %> -->
+<% end %>
 
-<!-- <script>
+<script>
   $('.gameEdit').on("click", event => {
     $(".editForm").toggle();
   })
+
+  $('.gameEdit').click(function() {
+    $(this).hide()
+  })
 </script>
 
-<script>
-$('.gameEdit').click(function() {
-    $(this).hide()
-})
-</script> -->
-
-<!-- <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
 $(function () {
   $('.edit_game').submit(function(event) {
     event.preventDefault()
     let values = $(this).serialize()
-    let editGame = $.post('/games', values)
+    let gameId = parseInt($(".gameEdit").attr("data-id"))
+    let editGame = $.post('/games/' + gameId, values)
     editGame.done(function(data) {
       let game = data
       $("#gameName").text(game["name"])
       $("#gameDifficultyLevel").text(game["difficulty_level"])
       $("#gameFunRating").text(game["fun_rating"])
-      debugger
     });
-    debugger
   });
 });
 </script> -->
@@ -70,7 +61,7 @@ $(function () {
 
 
 <!-- Selects Oppenent -->
-<!-- <h3>Select your opponent:</h3>
+<!-- <h3><i>Select your opponent:</h3></i>
 <%= form_for (@game) do |f| %>
   <%= f.collection_select :player_ids, Player.not_me(current_player), :id, :name, :include_blank => "Computer" %>
 <% end %> -->
@@ -78,11 +69,13 @@ $(function () {
 
 
 <!-- Selects Character -->
-<!-- <br><h3>Select a character to start the game:</h3>
+<!-- <br><i><h3>Select a character to start the game:</h3></i>
 <div class="initialCharacters">
   <% @game.characters.each do |character| %>
     <p></h4><li><%= link_to character&.name, game_character_path(character, game_id: @game) %></h4></p></li>
-  <% end %><br>
+  <% end %>
+  <ol>
+  </ol>
 </div> -->
 <!-- Selects Character -->
 
@@ -101,48 +94,45 @@ $(function () {
 
 
 <!-- Adds New Character -->
-<!-- <%= form_for(@character, url: game_characters_path(@game)) do |f| %>
-  <div>
-    <%= f.label :name %><br>
+<!-- <br><i><h3>Or Create a Character</h3></i>
+
+<%= form_for(@character) do |f| %>
+  <div class="charForm">
+    <%= f.hidden_field :player_id, value: current_player.id %>
+    <%= f.label :name %>
     <%= f.text_field :name %>
+    <%=f.hidden_field :game_id, :value => @game.id %>
+    <br><b><%= f.submit %></b>
   </div>
-  <div>
-    <br><%= f.submit %>
-  </div>
-<% end %> -->
+<% end %>
 
-<!-- <button class="newHero" data-id="<%= @game.id %>">Make a Character</button><br> -->
-
-<!-- <script>
-  $('.newHero').on("click", event => {
-    // debugger
-    $(".charForm").toggle();
-  })
-</script>
-
-<script>
-$('.newHero').click(function() {
-  // debugger
-    $(this).hide()
-})
-</script> -->
-
-<!-- <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
 $(function () {
-  $('#new_character').on("submit", event => {
+  $('.new_character').submit(function(event) {
     event.preventDefault()
     let values = $(this).serialize()
-    let gameId = parseInt($('.gameEdit').attr("data-id"))
-    let newChar = $.post('/games/' + gameId + '/characters' + '.json', values)
-    newChar.done(function(data) {
-      let character = data
-      $("#characterName").text(character["name"])
-      debugger
+    let gameId = parseInt($(".gameEdit").attr("data-id"))
+    let addChar = $.post('/games/' + gameId + '/characters' + '.json', values)
+    $("#character_name").val("")
+    addChar.done(function(data) {
+      let hero = data
+      $(".gameCharacters").append(`<p><li><a href="/games/${gameId}/characters/13">${hero["name"]}</a></li></p>`)
     })
-    debugger
   })
 })
+</script>
+
+ <script>
+$('body').on('submit','.new_character', function() {
+    if (true) {
+      return false;
+    } else {
+      return true;
+    }
+})
 </script> -->
+
+
 <!-- Adds New Character -->
 
 
@@ -152,6 +142,20 @@ $(function () {
   $(".js-next").on("click", function() {
     let nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/games/" + nextId + ".json", function(game) {
+
+      // Update Edit Button
+      $(".gameEdit").attr("data-id", game["id"]);
+
+      // Update form and inputs
+      $("form.edit_game").attr("action", `/games/${game["id"]}`);
+      $("input#game_name").val(game["name"]);
+      $("#game_difficulty_level option").prop('selected', false);
+      $(`#game_difficulty_level option[value="${game['difficulty_level']}"]`).prop('selected', true);
+      $("#game_fun_rating option").prop('selected', false);
+      $(`#game_fun_rating option[value="${game['fun_rating']}"]`).prop('selected', true);
+      $("input#character_game_id").val(game.id)
+
+      // Update Readonly Display fields
       $(".gameName").text(game["name"]);
       $(".gameDifficultyLevel").text(game["difficulty_level"]);
       $(".gameFunRating").text(game["fun_rating"]);
@@ -162,8 +166,10 @@ $(function () {
       })
       $(".js-next").attr("data-id", game["id"]);
     });
+    // debugger
   });
 });
 </script>
 
-<br><br><br><button class="js-next" data-id="<%= @game.id %>">Next Game >></button> --> -->
+<br><br><br><br><button class="js-next" data-id="<%= @game.id %>">Next Game >></button> -->
+<!-- Shifts Through Games -->

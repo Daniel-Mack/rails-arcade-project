@@ -3,7 +3,8 @@
 # :nodoc:
 class GamesController < ApplicationController
   protect_from_forgery
-  before_action :find_game, only: [:show, :edit, :update]
+  before_action :find_game, only: %i[show edit update]
+  before_action :character, only: %i[update show]
 
   def index
     @games = current_player.games
@@ -28,18 +29,21 @@ class GamesController < ApplicationController
 
   def update
     @game.update(game_params)
-    redirect_to game_path(@game)
-  end
-
-  def show
-    @character = Character.create(id: params[:id], name: params[:name], game_id: params[:game_id])
     game_json = @game.to_json(only: [:name, :difficulty_level, :fun_rating, :id],
                               include: [characters: { only: [:name, :game_id, :id]}])
     respond_to do |format|
-      format.html { render :show }
+      format.html { render 'show'}
       format.json { render json: game_json }
     end
   end
+
+  def show
+    respond_to do |format|
+      format.html { render 'show'}
+      format.json { render json: @game.to_json(only: [:name, :difficulty_level, :fun_rating, :id],
+                                include: [characters: { only: [:name, :game_id, :id]}])}
+    end
+   end
 
   private
 
@@ -49,5 +53,9 @@ class GamesController < ApplicationController
 
   def find_game
     @game = Game.find_by(id: params[:id])
+  end
+
+  def character
+    @character = Character.create(id: params[:id], name: params[:name], game_id: params[:game_id])
   end
 end
