@@ -9,5 +9,10 @@ document.addEventListener("turbolinks:load", function () {
       $(".gameCharacters").append(`<p><li><a href="/games/${gameId}/characters/13">${hero["name"]}</a></li></p>`)
     })
     $("#character_name").val("")
+    if (true) {
+      return false;
+    } else {
+      return true;
+    }
   }
 })

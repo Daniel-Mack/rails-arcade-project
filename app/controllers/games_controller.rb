@@ -8,6 +8,7 @@ class GamesController < ApplicationController
 
   def index
     @games = current_player.games
+    # @games = Game.all
   end
 
   def new
