@@ -3,7 +3,7 @@
 # :nodoc:
 class ApplicationController < ActionController::Base
   helper_method :current_player
-  
+
   def logged_in?
     @player = current_player
   end

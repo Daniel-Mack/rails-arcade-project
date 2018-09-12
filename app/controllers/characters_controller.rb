@@ -16,7 +16,7 @@ class CharactersController < ApplicationController
   def create
     character = Character.new(character_params)
     character.save
-    character_json = character.to_json(only: [:name, :game_id, :id])
+    character_json = character.to_json(only: %i[name game_id id])
     respond_to do |format|
       format.json { render json: character_json }
     end

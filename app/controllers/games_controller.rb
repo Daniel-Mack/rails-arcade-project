@@ -8,7 +8,6 @@ class GamesController < ApplicationController
 
   def index
     @games = current_player.games
-    # @games = Game.all
   end
 
   def new
@@ -30,19 +29,21 @@ class GamesController < ApplicationController
 
   def update
     @game.update(game_params)
-    game_json = @game.to_json(only: [:name, :difficulty_level, :fun_rating, :id],
-                              include: [characters: { only: [:name, :game_id, :id]}])
+    game_json = @game.to_json(only: %i[name difficulty_level fun_rating id],
+                              include: [characters: { only: %i[name game_id id] }])
     respond_to do |format|
-      format.html { render 'show'}
+      format.html { render 'show' }
       format.json { render json: game_json }
     end
   end
 
   def show
     respond_to do |format|
-      format.html { render 'show'}
-      format.json { render json: @game.to_json(only: [:name, :difficulty_level, :fun_rating, :id],
-                                include: [characters: { only: [:name, :game_id, :id]}])}
+      format.html { render 'show' }
+      format.json do
+        render json: @game.to_json(only: %i[name difficulty_level fun_rating id],
+                                   include: [characters: { only: %i[name game_id id] }])
+      end
     end
    end
 
