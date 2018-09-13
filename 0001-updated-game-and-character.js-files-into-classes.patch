@@ -1,0 +1,108 @@
+From 565b084075399a09904d6556467e8dc03f8e1a15 Mon Sep 17 00:00:00 2001
+From: Daniel Mack <daniel.mack@powerhrg.com>
+Date: Thu, 13 Sep 2018 15:33:50 -0400
+Subject: [PATCH] updated game and character.js files into classes
+
+---
+ app/assets/javascripts/character.js | 24 ++++++++++++++-
+ app/assets/javascripts/game.js      | 61 ++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 83 insertions(+), 2 deletions(-)
+
+diff --git a/app/assets/javascripts/character.js b/app/assets/javascripts/character.js
+index 8337712..fc7b19c 100644
+--- a/app/assets/javascripts/character.js
++++ b/app/assets/javascripts/character.js
+@@ -1 +1,23 @@
+-//
++class Character {
++  constructor() {
++    this.$addCharacterForm = $('.new_character')
++    this.addCharacterFormListener()
++  }
++
++  addCharacterFormListener() {
++    this.$addCharacterForm.on("submit", event => {
++      event.preventDefault()
++      let values = this.$addCharacterForm.serialize()
++      let gameId = parseInt($(".gameEdit").attr("data-id"))
++      $.post("/games/" + gameId + "/characters" + ".json", values, function(data) {
++        let hero = data
++        $(".gameCharacters").append(`<p><li><a href="/games/${gameId}/characters/13">${hero["name"]}</a></li></p>`)
++      })
++      $("#character_name").val("")
++    })
++  }
++}
++
++document.addEventListener("turbolinks:load", function() {
++  new Character
++})
+diff --git a/app/assets/javascripts/game.js b/app/assets/javascripts/game.js
+index 8337712..7f84af6 100644
+--- a/app/assets/javascripts/game.js
++++ b/app/assets/javascripts/game.js
+@@ -1 +1,60 @@
+-//
++class Game {
++  constructor() {
++    this.$editGameForm = $('.edit_game')
++    this.editGameFormListener()
++    this.$nextGameButton = $('.js-next')
++    this.nextGameButtonListener()
++  }
++
++  editGameFormListener() {
++    this.$editGameForm.on("submit", event => {
++      event.preventDefault()
++      let values = this.$editGameForm.serialize()
++      let gameId = $(".gameEdit").attr("data-id")
++      let editGame = $.post("/games/" + gameId + ".json", values)
++      editGame.done(function(game) {
++        $(".gameName").text(game["name"])
++        $(".gameDifficultyLevel").text(game["difficulty_level"])
++        $(".gameFunRating").text(game["fun_rating"])
++      })
++      if (true) {
++        return false;
++      } else {
++        return true;
++      }
++    })
++  }
++
++  nextGameButtonListener() {
++    this.$nextGameButton.on("click", event => {
++      event.preventDefault()
++      let nextId = parseInt($(".js-next").attr("data-id")) + 1;
++      $.get("/games/" + nextId + ".json", function(game) {
++        // Update form and inputs
++        $("form.edit_game").attr("action", `/games/${game["id"]}`)
++        $("input#game_name").val(game["name"])
++        $("#game_difficulty_level option").prop('selected', false)
++        $(`#game_difficulty_level option[value="${game['difficulty_level']}"]`).prop('selected', true);
++        $("#game_fun_rating option").prop('selected', false)
++        // Need to update dataid of edit form .attr
++        $(".gameEdit").attr("data-id", game["id"])
++        $(`#game_fun_rating option[value="${game['fun_rating']}"]`).prop('selected', true);
++        $("input#character_game_id").val(game.id)
++        // Update Readonly Display fields
++        $(".gameName").text(game["name"])
++        $(".gameDifficultyLevel").text(game["difficulty_level"])
++        $(".gameFunRating").text(game["fun_rating"])
++        $(".gameCharacters").text("")
++        game["characters"].forEach(function(character) {
++          $(".gameCharacters").append(`<li><a href='/games/${game.id}/characters/${character.id}'>${character.name}</a></li><br>`)
++          $('.initialCharacters').hide()
++        })
++        $(".js-next").attr("data-id", game["id"])
++      })
++    })
++  }
++}
++
++document.addEventListener("turbolinks:load", function() {
++  new Game
++})
+-- 
+2.15.2 (Apple Git-101.1)
+

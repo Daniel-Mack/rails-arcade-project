@@ -28,7 +28,7 @@ class Game {
   nextGameButtonListener() {
     this.$nextGameButton.on("click", event => {
       event.preventDefault()
-      let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      let nextId = $(".js-next").attr("data-id") + 1;
       $.get("/games/" + nextId + ".json", function(game) {
         // Update form and inputs
         $("form.edit_game").attr("action", `/games/${game["id"]}`)
