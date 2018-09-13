@@ -8,7 +8,8 @@ RSpec.describe Player, type: :model do
   end
 
   it 'is valid with a skill level' do
-    expect(Player.new(name: 'Daniel', age: 'twogg', password_digest: 'hgf', skill_level: 'high'))
+    expect(Player.new(name: 'Daniel', age: 'twogg',
+                      password_digest: 'hgf', skill_level: 'high'))
   end
 
   it 'is valid with an age' do

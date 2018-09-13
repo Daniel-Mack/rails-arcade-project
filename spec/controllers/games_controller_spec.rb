@@ -6,8 +6,6 @@ RSpec.describe GamesController, type: :controller do
   context 'GET #index' do
     before(:each) do
       player = FactoryBot.create(:player)
-      game = FactoryBot.create(:game)
-      current_player = player
       allow(controller).to(receive(:current_player).and_return(player))
     end
 
@@ -16,17 +14,17 @@ RSpec.describe GamesController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it 'should success and render to index page' do
+    it 'renders the game#index page' do
       get :index
       expect(response).to have_http_status(200)
       expect(response).to render_template :index
     end
   end
 
-  describe 'Games #new', type: :request do
+  context 'Games #new', type: :request do
     it 'renders the games#new page' do
       get '/games/new'
-      expect(response).to render_template(:new)
+      expect(response).to render_template :new
     end
   end
 
@@ -37,7 +35,10 @@ RSpec.describe GamesController, type: :controller do
         difficulty_level: 'Hard',
         fun_rating: 'High'
       }
-      expect { post(:create, params: { game: params }) }.to change(Game, :count).by(1)
+      expect do
+        post(:create,
+             params: { game: params })
+      end .to change(Game, :count).by(1)
     end
   end
 
@@ -46,8 +47,8 @@ RSpec.describe GamesController, type: :controller do
     it 'should update game info' do
       params = {
         name: 'Awesome product',
-        difficulty_level: 'Hard',
-        fun_rating: 'High'
+        difficulty_level: 'Easy',
+        fun_rating: 'Low'
       }
       put :update, params: { id: game.id, game: params }
       game.reload
@@ -57,7 +58,7 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context 'GET #show' do
-      it 'renders the games#show page' do
+      it 'renders the game#show page' do
         get :show, params: { id: game.id }
         expect(response).to have_http_status(200)
         expect(response).to render_template :show

@@ -11,7 +11,6 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'rails', '~> 5.2.0'
 gem 'rails-controller-testing'
 # Use sqlite3 as the database for Active Record
-gem 'rubocop'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -33,7 +32,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 
 gem 'rspec'
-gem 'rubocop-rspec'
 gem 'shoulda'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
