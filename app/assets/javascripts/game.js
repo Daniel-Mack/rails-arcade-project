@@ -28,10 +28,11 @@ class Game {
   nextGameButtonListener() {
     this.$nextGameButton.on("click", event => {
       event.preventDefault()
-      let nextId = $(".js-next").attr("data-id") + 1;
+      let nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/games/" + nextId + ".json", function(game) {
         // Update form and inputs
         $("form.edit_game").attr("action", `/games/${game["id"]}`)
+        // debugger
         $("input#game_name").val(game["name"])
         $("#game_difficulty_level option").prop('selected', false)
         $(`#game_difficulty_level option[value="${game['difficulty_level']}"]`).prop('selected', true);
@@ -52,6 +53,10 @@ class Game {
         $(".js-next").attr("data-id", game["id"])
       })
     })
+
+    selectCharacterListener() {
+
+    }
   }
 }
 
